@@ -1,0 +1,171 @@
+.slick-prev {
+  left: -10px !important;
+  z-index: 999;
+  height: 45px !important;
+  width: 40px !important;
+  background: #f8f3f3 !important;
+  border: 2px solid #d7d7d7 !important;
+  top: 45% !important;
+  &:hover {
+    background: #fff !important;
+    transition: all 0.2s linear !important;
+  }
+}
+.slick-prev::before,
+.slick-next:before {
+  color: #959595 !important;
+  font-size: 24px !important;
+}
+.slick-next {
+  right: 5px !important;
+  height: 45px !important;
+  z-index: 999;
+  width: 40px !important;
+  background: #f8f3f3 !important;
+  border: 2px solid #d7d7d7 !important;
+  top: 45% !important;
+  &:hover {
+    background: #fff !important;
+    transition: all 0.2s linear !important;
+  }
+}
+
+.section-share {
+  &.section-specialty {
+    background: #f5f5f5;
+  }
+  &.section-outstanding-doctor {
+    background: #f5f5f5;
+  }
+  &.section-about {
+    height: 500px !important;
+  }
+  .section-body {
+    cursor: pointer;
+
+    .section-customize {
+      &:hover .section-text {
+        color: #45c3d2;
+        transition: all 0.15s linear;
+      }
+      .bg-image {
+        width: 278px;
+        height: 150px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: #eee;
+
+        &.section-specialty {
+          background-image: url(../../assets/specialty/co-xuong-khop.jpg);
+        }
+        &.section-medical-facility {
+          background-image: url(../../assets/medical-facility/viet-duc.jpg);
+        }
+        &.section-outstanding-doctor {
+          background-image: url(../../assets/outstanding-doctor/anh-dai-dien-bs.jpg);
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
+          border-radius: 50%;
+        }
+        &.section-handbook {
+          background-image: url(../../assets/handbook/phong-kham-san-phu-khoa-uy-tin-tphcm.png);
+        }
+      }
+      .section-text {
+        color: #111;
+        padding: 5px 0;
+        font-size: 13px;
+      }
+    }
+  }
+}
+.section-share {
+  height: 330px;
+
+  .section-container {
+    margin: 0 180px;
+    display: flex;
+    flex-direction: column;
+
+    .section-header {
+      margin-bottom: 20px;
+      height: 60px;
+      position: relative;
+
+      .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 15px 0px 5px 0px;
+      }
+
+      .section-btn {
+        position: absolute;
+        right: 16px;
+        top: 5px;
+        height: 36.5px;
+        border: none;
+        outline: none;
+        display: block;
+        background: #ebebeb;
+        text-transform: uppercase;
+        padding: 10px 15px;
+        color: #282e41;
+        font-size: 11px;
+        margin-top: 15px;
+        &:hover {
+          cursor: pointer;
+          color: #fff;
+          background: #f7d800;
+          transition: all 0.15s linear;
+        }
+      }
+    }
+  }
+}
+.section-customize {
+  padding: 5px;
+  .customize-border {
+    border: 1px solid #fff;
+    padding: 20px;
+  }
+}
+.home-footer {
+  text-align: center;
+  padding-top: 10px;
+  a {
+    text-decoration: none;
+    color: #111;
+  }
+  a:hover {
+    color: #45c3d2;
+    transition: all 0.15s linear;
+  }
+}
+.section-about {
+  margin: 0 180px;
+  .section-about-header {
+    padding: 20px 10px;
+    h2 {
+      font-size: 24px;
+      color: #000000;
+    }
+  }
+  .section-about-content {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    .content-left {
+      width: 60%;
+    }
+    .content-right {
+      width: 40%;
+      p {
+        text-align: justify;
+        font-style: italic;
+        padding-top: 15px;
+      }
+    }
+  }
+}
