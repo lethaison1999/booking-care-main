@@ -23,7 +23,6 @@ class HomeHeader extends Component {
   };
   render() {
     let language = this.props.language;
-    console.log('check language ', language);
     return (
       <>
         <div className="home-header-container">
@@ -203,6 +202,7 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
+    userInfo: state.user.userInfo,
   };
 };
 
