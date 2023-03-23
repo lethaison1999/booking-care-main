@@ -1,94 +1,77 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
+import * as actions from '../../../store/actions/';
+import { LANGUAGES } from '../../../utils/constant';
 
 class OutStandingDoctor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctors: [],
+    };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        arrDoctors: this.props.topDoctorsRedux,
+      });
+    }
+  }
+  componentDidMount() {
+    this.props.loadTopDoctorRedux();
+  }
   render() {
+    let arrDoctors = this.state.arrDoctors;
+    let { language } = this.props;
     return (
       <>
         <div className="section-share section-outstanding-doctor">
           <div className="section-container">
             <div className="section-header">
-              <h2 className="section-title">Bác sĩ nổi bật tuần qua</h2>
-              <button className="section-btn">TÌM KIẾM</button>
+              <h2 className="section-title">
+                <FormattedMessage id="homePage.outstanding-doctor" />
+              </h2>
+              <button className="section-btn">
+                {' '}
+                <FormattedMessage id="homePage.more-infor" />
+              </button>
             </div>
             <div className="section-body">
               <Slider {...this.props.settings}>
-                <div className="section-customize">
-                  <div className="customize-border">
-                    <div className="outer-bg">
-                      <div className="bg-image section-outstanding-doctor" />
-                    </div>
-                    <div className="position text-center">
-                      <div className="section-text">
-                        Giáo Sư, Tiến Sĩ Thái Sơn Dev
+                {arrDoctors &&
+                  arrDoctors.length > 0 &&
+                  arrDoctors.map((item, index) => {
+                    let imageBase64 = '';
+                    if (item.image) {
+                      imageBase64 = new Buffer(item.image, 'base64').toString(
+                        'binary'
+                      );
+                    }
+                    let nameVi = `${item.positionData.valueVi},${item.firstName} ${item.lastName}`;
+                    let nameEn = `${item.positionData.valueEn},${item.lastName} ${item.firstName} `;
+                    return (
+                      <div className="section-customize" key={index}>
+                        <div className="customize-border">
+                          <div className="outer-bg">
+                            <div
+                              className="bg-image section-outstanding-doctor"
+                              style={{ backgroundImage: `url(${imageBase64})` }}
+                            />
+                          </div>
+                          <div className="position text-center">
+                            <div className="section-text">
+                              {language === LANGUAGES.VI ? nameVi : nameEn}
+                            </div>
+                            <div style={{ color: '#55555', fontSize: '12px' }}>
+                              Cơ Xương Khớp
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div style={{ color: '#55555', fontSize: '12px' }}>
-                        Cơ Xương Khớp
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="section-customize">
-                  <div className="customize-border">
-                    <div className="outer-bg">
-                      <div className="bg-image section-outstanding-doctor" />
-                    </div>
-                    <div className="position text-center">
-                      <div className="section-text">
-                        Giáo Sư, Tiến Sĩ Thái Sơn Dev
-                      </div>
-                      <div style={{ color: '#55555', fontSize: '12px' }}>
-                        Cơ Xương Khớp
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="section-customize">
-                  <div className="customize-border">
-                    <div className="outer-bg">
-                      <div className="bg-image section-outstanding-doctor" />
-                    </div>
-                    <div className="position text-center">
-                      <div className="section-text">
-                        Giáo Sư, Tiến Sĩ Thái Sơn Dev
-                      </div>
-                      <div style={{ color: '#55555', fontSize: '12px' }}>
-                        Cơ Xương Khớp
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="section-customize">
-                  <div className="customize-border">
-                    <div className="outer-bg">
-                      <div className="bg-image section-outstanding-doctor" />
-                    </div>
-                    <div className="position text-center">
-                      <div className="section-text">
-                        Giáo Sư, Tiến Sĩ Thái Sơn Dev
-                      </div>
-                      <div style={{ color: '#55555', fontSize: '12px' }}>
-                        Cơ Xương Khớp
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="section-customize">
-                  <div className="customize-border">
-                    <div className="outer-bg">
-                      <div className="bg-image section-outstanding-doctor" />
-                    </div>
-                    <div className="position text-center">
-                      <div className="section-text">
-                        Giáo Sư, Tiến Sĩ Thái Sơn Dev
-                      </div>
-                      <div style={{ color: '#55555', fontSize: '12px' }}>
-                        Cơ Xương Khớp
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    );
+                  })}
               </Slider>
             </div>
           </div>
@@ -101,11 +84,15 @@ class OutStandingDoctor extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    topDoctorsRedux: state.admin.topDoctors,
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    loadTopDoctorRedux: () => dispatch(actions.fetchTopDoctor()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);

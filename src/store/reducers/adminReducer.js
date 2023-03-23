@@ -6,6 +6,7 @@ const initialState = {
   positions: [],
   isLoadingGender: false,
   users: [],
+  topDoctors: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -61,6 +62,16 @@ const appReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_ALL_USERS_FAILDED:
       state.users = [];
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+      state.topDoctors = action.dataDoctors;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_TOP_DOCTOR_FAILDED:
+      state.topDoctors = [];
       return {
         ...state,
       };

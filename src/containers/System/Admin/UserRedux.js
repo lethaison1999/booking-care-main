@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { LANGUAGES, CRUD_ACTIONS } from '../../../utils/constant';
+import { CommonUtils } from '../../../utils';
 import './UserRedux.scss';
 import * as actions from '../../../store/actions';
 import Lightbox from 'react-image-lightbox';
@@ -54,14 +55,14 @@ class UserRedux extends Component {
       let arrGenders = this.props.genderRedux;
       this.setState({
         genderArr: arrGenders,
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
       });
     }
     if (prevProps.roleRedux !== this.props.roleRedux) {
       let arrRoles = this.props.roleRedux;
       this.setState({
         rolesArr: arrRoles,
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
       });
     }
     if (prevProps.positionRedux !== this.props.positionRedux) {
@@ -69,7 +70,7 @@ class UserRedux extends Component {
       this.setState({
         positionArr: arrPosition,
         position:
-          arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
       });
     }
     if (prevProps.users !== this.props.users) {
@@ -83,27 +84,28 @@ class UserRedux extends Component {
         lastName: '',
         phoneNumber: '',
         address: '',
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
         position:
-          arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
         avatar: '',
         action: CRUD_ACTIONS.CREATE,
+        previewImgUrl: '',
       });
     }
   }
 
-  handleOnchangeImage = (e) => {
+  handleOnchangeImage = async (e) => {
     let data = e.target.files;
     let file = data[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgUrl: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
-    // console.log(objectUrl);
   };
   handlePreviewImage = () => {
     if (!this.state.previewImgUrl) {
@@ -131,6 +133,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
+        avatar: this.state.avatar,
       });
     }
     if (action === CRUD_ACTIONS.EDIT) {
@@ -145,6 +148,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
+        avatar: this.state.avatar,
       });
     }
     console.log('check state before on submit :', this.state);
@@ -160,7 +164,6 @@ class UserRedux extends Component {
       'gender',
       'position',
       'role',
-      'avatar',
     ];
     let isValid = true;
     for (let i = 0; i < arrInput.length; i++) {
@@ -187,7 +190,11 @@ class UserRedux extends Component {
     });
   };
   handleEditUserParent = (user) => {
-    console.log('hoi dan it handle edit user', user);
+    let imageBase64 = '';
+    if (user.image) {
+      imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+    }
+
     this.setState({
       email: user.email,
       password: 'hard code',
@@ -199,6 +206,7 @@ class UserRedux extends Component {
       role: user.roleId,
       position: user.positionId,
       avatar: '',
+      previewImgUrl: imageBase64,
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id,
     });
@@ -322,7 +330,7 @@ class UserRedux extends Component {
                     genders.length > 0 &&
                     genders.map((item) => {
                       return (
-                        <option key={item.id} value={item.key}>
+                        <option key={item.id} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -345,7 +353,7 @@ class UserRedux extends Component {
                     positions.length > 0 &&
                     positions.map((item) => {
                       return (
-                        <option key={item.id} value={item.key}>
+                        <option key={item.id} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -368,7 +376,7 @@ class UserRedux extends Component {
                     roles.length > 0 &&
                     roles.map((item) => {
                       return (
-                        <option key={item.id} value={item.key}>
+                        <option key={item.id} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
