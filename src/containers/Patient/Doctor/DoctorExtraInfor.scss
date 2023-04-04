@@ -1,0 +1,80 @@
+.doctor-extra-infor-container {
+  padding-left: 10px;
+  .content-up {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    .text-address {
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #666;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .name-clinic {
+      font-weight: bold;
+      font-size: 14px;
+      padding: 3px 0;
+      margin-bottom: 5px;
+    }
+    .detail-address {
+      font-size: 13px;
+      padding: 3px 0;
+      color: #000000;
+    }
+  }
+  .content-dow {
+    padding-top: 10px;
+    sub {
+      left: 0px;
+      top: -4px;
+      font-size: 13px;
+    }
+    .show {
+      color: #45c3d2;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .content-price {
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #666;
+      font-weight: 600;
+      padding-bottom: 10px;
+    }
+    .content-text {
+      border: 1px solid #ddd;
+      padding: 3px;
+      background: #f8f8f8;
+
+      .left {
+        font-size: 14px;
+      }
+      .right {
+        float: right;
+        sub {
+          left: -2px;
+          top: -4px;
+          font-size: 13px;
+        }
+      }
+      .text-p {
+        margin-top: 5px;
+        font-size: 13px;
+        color: #666666;
+      }
+    }
+    .content-payment {
+      border: 1px solid #ddd;
+      background: #eeeeee;
+      padding: 15px 0;
+      padding-left: 3px;
+    }
+    .none-price {
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      .an-bang-gia {
+      }
+    }
+  }
+}

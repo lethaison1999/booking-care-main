@@ -1,0 +1,64 @@
+.doctor-deltail-container {
+  height: 500px;
+  .intro-doctor {
+    display: flex;
+    padding: 0 100px;
+
+    .content__left {
+      width: 20%;
+      width: 120px;
+      height: 120px;
+      background: center center no-repeat;
+      border-radius: 50%;
+      margin: 10px 20px;
+      background-size: contain;
+    }
+    .content__right {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px 0;
+      .up {
+        padding-top: 15px;
+        font-size: 25px;
+        font-weight: 600;
+        color: #333333;
+      }
+      .down {
+        padding-top: 15px;
+        font-size: 13px;
+        color: #555555;
+      }
+    }
+  }
+  .schedule-doctor {
+    margin: 0 100px;
+    margin-top: 30px;
+    display: flex;
+    min-height: 200px;
+    .content-left {
+      width: 50%;
+    }
+    .content-right {
+      width: 50%;
+    }
+  }
+  .deitail-info-doctor {
+    background-color: #f9f9f9;
+    width: 100%;
+    padding: 10px 100px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    li,
+    p {
+      color: #000000;
+    }
+  }
+}

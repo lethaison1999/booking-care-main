@@ -5,21 +5,20 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
 import CustomScrollbars from '../components/CustomScrollbars';
-import {
-  userIsAuthenticated,
-  userIsNotAuthenticated,
-} from '../hoc/authentication';
+import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils';
 
 import Home from '../routes/Home';
 // import Login from '../routes/Login';
 import Login from './Auth/Login';
-import Header from './Header/Header';
 import System from '../routes/System';
 import HomePage from './HomePage/HomePage';
 import { CustomToastCloseButton } from '../components/CustomToast';
-
+import DetailDoctor from '../containers/Patient/Doctor/DetailDoctor';
+import Doctor from '../routes/Doctor';
+import VerifyEmail from './Patient/VerifyEmail';
+import DetailSpecialty from './Patient/Specialty/DetailSpecialty';
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -48,15 +47,14 @@ class App extends Component {
               <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
-                  <Route
-                    path={path.LOGIN}
-                    component={userIsNotAuthenticated(Login)}
-                  />
-                  <Route
-                    path={path.SYSTEM}
-                    component={userIsAuthenticated(System)}
-                  />
+                  <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                  <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                  <Route path={'/doctor'} component={userIsAuthenticated(Doctor)} />
                   <Route path={path.HOMEPAGE} exact component={HomePage} />
+                  <Route path={path.DETAIL_DOCTOR} exact component={DetailDoctor} />
+                  <Route path={path.DETAIL_SPECIALTY} exact component={DetailSpecialty} />
+
+                  <Route path={path.VERIFY_EMAIL_BOOKING} exact component={VerifyEmail} />
                 </Switch>
               </CustomScrollbars>
             </div>

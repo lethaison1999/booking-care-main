@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import * as actions from '../../../store/actions/';
 import { LANGUAGES } from '../../../utils/constant';
-
+import { withRouter } from 'react-router';
 class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,11 @@ class OutStandingDoctor extends Component {
   componentDidMount() {
     this.props.loadTopDoctorRedux();
   }
+
+  handleViewDetailDoctor = (doctor) => {
+    // console.log('check doctor ', doctor);
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
@@ -45,14 +50,12 @@ class OutStandingDoctor extends Component {
                   arrDoctors.map((item, index) => {
                     let imageBase64 = '';
                     if (item.image) {
-                      imageBase64 = new Buffer(item.image, 'base64').toString(
-                        'binary'
-                      );
+                      imageBase64 = Buffer.from(item.image, 'base64').toString('binary');
                     }
                     let nameVi = `${item.positionData.valueVi},${item.firstName} ${item.lastName}`;
                     let nameEn = `${item.positionData.valueEn},${item.lastName} ${item.firstName} `;
                     return (
-                      <div className="section-customize" key={index}>
+                      <div className="section-customize" key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                         <div className="customize-border">
                           <div className="outer-bg">
                             <div
@@ -61,12 +64,8 @@ class OutStandingDoctor extends Component {
                             />
                           </div>
                           <div className="position text-center">
-                            <div className="section-text">
-                              {language === LANGUAGES.VI ? nameVi : nameEn}
-                            </div>
-                            <div style={{ color: '#55555', fontSize: '12px' }}>
-                              Cơ Xương Khớp
-                            </div>
+                            <div className="section-text">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                            <div style={{ color: '#55555', fontSize: '12px' }}>Cơ Xương Khớp</div>
                           </div>
                         </div>
                       </div>
@@ -95,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

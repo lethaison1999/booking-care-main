@@ -1,0 +1,32 @@
+.manage-doctor-container {
+  padding: 5px;
+  .manage-doctor__title {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .manage-doctor__editor {
+  }
+  .save-doctor {
+    margin: 15px 0;
+    // color: white;
+  }
+  .create-doctor {
+    margin: 15px 0;
+  }
+  .more-infor {
+    display: flex;
+    // justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    padding-bottom: 15px;
+    .content-left {
+      width: 40%;
+    }
+    .content-right {
+      width: 60%;
+    }
+  }
+}

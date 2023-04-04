@@ -38,6 +38,9 @@
       "manage-specialty": "Quản lý Chuyên khoa",
       "handbook": "Cẩm nang",
       "manage-handbook": "Quản lý cẩm nang"
+    },
+    "doctor": {
+      "manage-schedule": "Quản lý kế hoạch khám bệnh"
     }
   },
   "manage-user": {
@@ -58,6 +61,60 @@
   },
   "homePage": {
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
-    "more-infor": "Xem Thêm"
+    "more-infor": "Xem Thêm",
+    "specialty-title": "Chuyên khoa phổ biến"
+  },
+  "manage-schedule": {
+    "schedule-title": "Quản lý khám bệnh của bác sĩ",
+    "choose-doctor": "Chọn bác sĩ",
+    "choose-date": "Chọn ngày",
+    "save-doctor": "Lưu thông tin"
+  },
+  "patient": {
+    "detail-doctor": {
+      "schedule": "Lịch Khám",
+      "no-schedule": "Không có lịch khám ngày hôm nay. Vui lòng chọn ngày khác !!!",
+      "choose": "Chọn",
+      "book-free": "và đặt (Phí đặt lịch 0đ)"
+    },
+    "extra-doctorInfo": {
+      "text-address": "Địa chỉ khám",
+      "price": "Giá khám: ",
+      "xem-chi-tiet": "Xem chi tiết ",
+      "content-payment": " Người bệnh có thể thanh toán chi phí bằng hình thức: ",
+      "an-bang-gia": "Ẩn bảng giá"
+    },
+    "booking-model": {
+      "left": "Thông tin đặt lịch khám bệnh",
+      "name": "Họ và tên",
+      "phoneNumber": "Số điện thoại",
+      "email": "Địa chỉ email",
+      "address": "Địa chỉ liên hệ",
+      "li-do": "Lý do khám",
+      "date": "Ngày sinh",
+      "gender": "Giới tính",
+      "save": "Xác nhận",
+      "cancel": "Hủy",
+      "priceBooking": "Đặt lịch miễn phí",
+      "gia-kham": "Giá khám :",
+      "chon-gt": "Chọn giới tính..."
+    }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Tạo thông tin bác sĩ",
+      "choose-doctor": "Chọn bác sĩ",
+      "doctor-infor": "Thông tin giới thiệu",
+      "save-doctor": "Lưu thông tin",
+      "create-doctor": "Tạo thông tin",
+      "price": "Giá khám bệnh",
+      "payment": " Phương thức thanh toán",
+      "province": " Tỉnh thành",
+      "clinic": "Tên phòng khám",
+      "clinic-address": "Địa chỉ phòng khám",
+      "note": "Ghi chú",
+      "chuyen-khoa": "Chọn chuyên khoa",
+      "phong-kham": "Chọn phòng khám"
+    }
   }
 }
