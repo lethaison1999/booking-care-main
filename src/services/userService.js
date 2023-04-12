@@ -40,9 +40,7 @@ const saveBulkScheduleDoctorService = (data) => {
   return axios.post(`/api/bulk-create-schedule`, data);
 };
 const getScheduleByDateService = (doctorId, date) => {
-  return axios.get(
-    `/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`
-  );
+  return axios.get(`/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`);
 };
 const getExtraInforDoctorByIdService = (doctorId) => {
   return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
@@ -63,7 +61,29 @@ const createNewSpecialtyService = (data) => {
 const getAllSpecialtyService = () => {
   return axios.get(`/api/get-all-specialty`);
 };
+const getDetailSpecialtyByIdService = (data) => {
+  return axios.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`);
+};
+const createNewClinicService = (data) => {
+  return axios.post(`/api/create-new-clinic`, data);
+};
+const getAllClinicService = () => {
+  return axios.get(`/api/get-all-clinic`);
+};
+const getDetailClinicByIdService = (data) => {
+  return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+};
+const getAllPatientForDoctorService = (data) => {
+  return axios.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`);
+};
+
+const postSendRemedyService = (data) => {
+  return axios.post(`/api/send-remedy`, data);
+};
 export {
+  getDetailClinicByIdService,
+  getAllClinicService,
+  createNewClinicService,
   getAllUsers,
   getAllSpecialtyService,
   handleLoginApi,
@@ -82,4 +102,7 @@ export {
   postPatientBookingAppointmentService,
   postVerifyPatientBookingAppointmentService,
   createNewSpecialtyService,
+  getDetailSpecialtyByIdService,
+  getAllPatientForDoctorService,
+  postSendRemedyService,
 };

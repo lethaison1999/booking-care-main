@@ -44,7 +44,7 @@ class DoctorExtraInfor extends Component {
     this.setState({
       isShowDetailInfor: status,
     });
-    console.log('status', status);
+    // console.log('status', status);
   };
   render() {
     let { isShowDetailInfor, extraInfor } = this.state;

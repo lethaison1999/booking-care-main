@@ -164,7 +164,8 @@ class BookingModal extends Component {
         email: this.state.email,
         address: this.state.address,
         reason: this.state.reason,
-        date: date,
+        date: this.props.dataTime.date,
+        birthday: date,
         genders: this.state.genders,
         doctorId: this.state.doctorId,
         setlectedGender: this.state.setlectedGender.value,
@@ -183,19 +184,14 @@ class BookingModal extends Component {
     }
   };
   render() {
-    let { isOpenModal, closeBookingModal, dataTime } = this.props;
+    let { isOpenModal, closeBookingModal, dataTime, isShowPrice, isShowXemThem } = this.props;
     let doctorId = '';
     if (dataTime && !_.isEmpty(dataTime)) {
       doctorId = dataTime.doctorId;
     }
     return (
       <>
-        <Modal
-          isOpen={isOpenModal}
-          className="booking-modal__container"
-          size="lg"
-          centered
-        >
+        <Modal isOpen={isOpenModal} className="booking-modal__container" size="lg" centered>
           <div className="booking-modal__content">
             <div className="booking-modal__header">
               <span className="left">
@@ -212,6 +208,8 @@ class BookingModal extends Component {
                   doctorId={doctorId}
                   isshowDesc={false}
                   dataTime={dataTime}
+                  isShowPrice={true}
+                  isShowXemThem={false}
                 />
               </div>
 
@@ -299,19 +297,14 @@ class BookingModal extends Component {
                     value={this.state.setlectedGender}
                     options={this.state.genders}
                     onChange={this.handleChangeSelect}
-                    placeholder={
-                      <FormattedMessage id="patient.booking-model.chon-gt" />
-                    }
+                    placeholder={<FormattedMessage id="patient.booking-model.chon-gt" />}
                     name="setlectedGender"
                   />
                 </div>
               </div>
             </div>
             <div className="booking-modal__footer">
-              <button
-                className="btn btn-primary"
-                onClick={() => this.handleConfirmBooking()}
-              >
+              <button className="btn btn-primary" onClick={() => this.handleConfirmBooking()}>
                 <FormattedMessage id="patient.booking-model.save" />
               </button>
               <button className="btn btn-warning" onClick={closeBookingModal}>

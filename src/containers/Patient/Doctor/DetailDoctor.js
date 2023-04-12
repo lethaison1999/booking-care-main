@@ -6,6 +6,7 @@ import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfor from './DoctorExtraInfor';
 import { getDeitailInforDoctors } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import { Link } from 'react-router-dom';
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -16,11 +17,7 @@ class DetailDoctor extends Component {
   }
 
   async componentDidMount() {
-    if (
-      this.props.match &&
-      this.props.match.params &&
-      this.props.match.params.id
-    ) {
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
       this.setState({
         currentDoctorId: id,
@@ -54,46 +51,34 @@ class DetailDoctor extends Component {
             <div
               className="content__left"
               style={{
-                backgroundImage: `url(${
-                  detailDoctor.image ? detailDoctor.image : 'image error'
-                })`,
+                backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : 'image error'})`,
               }}
             ></div>
             <div className="content__right">
-              <div className="up">
-                {language === LANGUAGES.VI ? nameVi : nameEn}
-              </div>
+              <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
               <div className="down">
-                {detailDoctor &&
-                  detailDoctor.MarkDown &&
-                  detailDoctor.MarkDown.description && (
-                    <span>{detailDoctor.MarkDown.description}</span>
-                  )}
+                {detailDoctor && detailDoctor.MarkDown && detailDoctor.MarkDown.description && (
+                  <span>{detailDoctor.MarkDown.description}</span>
+                )}
               </div>
             </div>
           </div>
           <div className="schedule-doctor">
             <div className="content-left">
-              <DoctorSchedule
-                currentDoctorIdFather={this.state.currentDoctorId}
-              />
+              <DoctorSchedule currentDoctorIdFather={this.state.currentDoctorId} />
             </div>
             <div className="content-right">
-              <DoctorExtraInfor
-                currentDoctorIdFather={this.state.currentDoctorId}
-              />
+              <DoctorExtraInfor currentDoctorIdFather={this.state.currentDoctorId} />
             </div>
           </div>
           <div className="deitail-info-doctor">
-            {detailDoctor &&
-              detailDoctor.MarkDown &&
-              detailDoctor.MarkDown.contentHTML && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: detailDoctor.MarkDown.contentHTML,
-                  }}
-                ></div>
-              )}
+            {detailDoctor && detailDoctor.MarkDown && detailDoctor.MarkDown.contentHTML && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: detailDoctor.MarkDown.contentHTML,
+                }}
+              ></div>
+            )}
           </div>
           <div className="comment-doctor"></div>
         </div>

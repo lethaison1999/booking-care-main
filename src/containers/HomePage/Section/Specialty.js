@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import { getAllSpecialtyService } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
-
+import './Specialty.scss';
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +26,10 @@ class Specialty extends Component {
   };
   render() {
     let { dataSpecialty } = this.state;
-    console.log('check state :', dataSpecialty);
+    // console.log('check state :', dataSpecialty);
     return (
       <>
-        <div className="section-share section-specialty">
+        <div className="section-share section-specialty ">
           <div className="section-container">
             <div className="section-header">
               <h2 className="section-title">
@@ -39,14 +39,21 @@ class Specialty extends Component {
                 <FormattedMessage id="homePage.more-infor" />
               </button>
             </div>
-            <div className="section-body">
+            <div className="section-body ">
               <Slider {...this.props.settings}>
                 {dataSpecialty &&
                   dataSpecialty.length > 0 &&
                   dataSpecialty.map((item, index) => {
                     return (
-                      <div key={index} className="section-customize" onClick={() => this.handleViewDetailDoctor(item)}>
-                        <div className="bg-image section-specialty" style={{ backgroundImage: `url(${item.image})` }} />
+                      <div
+                        key={index}
+                        className="section-customize "
+                        onClick={() => this.handleViewDetailDoctor(item)}
+                      >
+                        <div
+                          className="bg-image section-specialty "
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        />
                         <div className="section-text">{item.name}</div>
                       </div>
                     );

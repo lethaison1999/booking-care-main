@@ -28,6 +28,12 @@ class DoctorSchedule extends Component {
     //   moment(new Date()).locale('en').format('ddd - DD/MM')
     // );
     let allDays = this.getArrDays(language);
+    if (this.props.currentDoctorIdFather) {
+      let res = await getScheduleByDateService(this.props.currentDoctorIdFather, allDays[0].value);
+      this.setState({
+        allAvalableTime: res.data ? res.data : [],
+      });
+    }
     this.setState({
       allDays: allDays,
     });
@@ -45,9 +51,7 @@ class DoctorSchedule extends Component {
           let today = `Hôm nay - ${ddMM}`;
           obj.label = today;
         } else {
-          let labelVi = moment(new Date())
-            .add(i, 'days')
-            .format('dddd - DD/MM');
+          let labelVi = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
           obj.label = this.capitalizeFirstLetter(labelVi);
         }
       } else {
@@ -56,10 +60,7 @@ class DoctorSchedule extends Component {
           let today = `Today - ${ddMM}`;
           obj.label = today;
         } else {
-          obj.label = moment(new Date())
-            .add(i, 'days')
-            .locale('en')
-            .format('ddd - DD/MM');
+          obj.label = moment(new Date()).add(i, 'days').locale('en').format('ddd - DD/MM');
         }
       }
       obj.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
@@ -76,20 +77,14 @@ class DoctorSchedule extends Component {
     }
     if (this.props.currentDoctorIdFather !== prevProps.currentDoctorIdFather) {
       let allDays = this.getArrDays(this.props.language);
-      let res = await getScheduleByDateService(
-        this.props.currentDoctorIdFather,
-        allDays[0].value
-      );
+      let res = await getScheduleByDateService(this.props.currentDoctorIdFather, allDays[0].value);
       this.setState({
         allAvalableTime: res.data ? res.data : [],
       });
     }
   }
   handleOnchangeSelect = async (e) => {
-    if (
-      this.props.currentDoctorIdFather &&
-      this.props.currentDoctorIdFather !== -1
-    ) {
+    if (this.props.currentDoctorIdFather && this.props.currentDoctorIdFather !== -1) {
       let doctorId = this.props.currentDoctorIdFather;
       let date = e.target.value;
       let res = await getScheduleByDateService(doctorId, date);
@@ -98,9 +93,7 @@ class DoctorSchedule extends Component {
           allAvalableTime: res.data ? res.data : [],
         });
       }
-      // console.log('check responsive schedule service ', res);
     }
-    // console.log('check event ', e.target.value);
   };
   handleClickTime = (time) => {
     this.setState({
@@ -115,12 +108,7 @@ class DoctorSchedule extends Component {
     });
   };
   render() {
-    let {
-      allDays,
-      allAvalableTime,
-      isOpenModalBooking,
-      dataScheduleTimeModal,
-    } = this.state;
+    let { allDays, allAvalableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
     return (
       <>
@@ -158,15 +146,11 @@ class DoctorSchedule extends Component {
                     <>
                       {allAvalableTime.map((item, index) => {
                         let timeDisplay =
-                          language === LANGUAGES.VI
-                            ? item.timeTypeData.valueVi
-                            : item.timeTypeData.valueEn;
+                          language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
                         return (
                           <button
                             key={index}
-                            className={
-                              language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'
-                            }
+                            className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'}
                             onClick={() => this.handleClickTime(item)}
                           >
                             {timeDisplay}

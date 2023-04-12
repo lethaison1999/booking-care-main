@@ -7,6 +7,7 @@ import _ from 'lodash';
 import './ProfileDoctor.scss';
 import moment from 'moment';
 import { LANGUAGES } from '../../../utils';
+import { Link } from 'react-router-dom';
 
 class ProfileDoctor extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ class ProfileDoctor extends Component {
   };
   render() {
     let { dataProfile } = this.state;
-    let { language, isshowDesc, dataTime } = this.props;
+    let { language, isshowDesc, dataTime, isShowPrice, isShowXemThem, doctorId } = this.props;
 
     let nameVi = '';
     let nameEn = '';
@@ -88,23 +89,17 @@ class ProfileDoctor extends Component {
             <div
               className="content__left"
               style={{
-                backgroundImage: `url(${
-                  dataProfile.image ? dataProfile.image : 'image error'
-                })`,
+                backgroundImage: `url(${dataProfile.image ? dataProfile.image : 'image error'})`,
               }}
             ></div>
             <div className="content__right">
-              <div className="up">
-                {language === LANGUAGES.VI ? nameVi : nameEn}
-              </div>
+              <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
               <div className="down">
                 {isshowDesc === true ? (
                   <>
-                    {dataProfile &&
-                      dataProfile.MarkDown &&
-                      dataProfile.MarkDown.description && (
-                        <span>{dataProfile.MarkDown.description}</span>
-                      )}
+                    {dataProfile && dataProfile.MarkDown && dataProfile.MarkDown.description && (
+                      <span>{dataProfile.MarkDown.description}</span>
+                    )}
                   </>
                 ) : (
                   <>{this.renderTimeBooking(dataTime)}</>
@@ -112,38 +107,45 @@ class ProfileDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="price">
-            <span className="price-text">
-              {' '}
-              <FormattedMessage id="patient.booking-model.gia-kham" />{' '}
-            </span>
-            {dataProfile &&
-            dataProfile.Doctor_Infor &&
-            dataProfile.Doctor_Infor.priceTypeData &&
-            language === LANGUAGES.VI ? (
-              <NumberFormat
-                value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
-                displayType={'text'}
-                thousandSeparator={true}
-                suffix={'VNĐ'}
-              />
-            ) : (
-              ''
-            )}
-            {dataProfile &&
-            dataProfile.Doctor_Infor &&
-            dataProfile.Doctor_Infor.priceTypeData &&
-            language === LANGUAGES.EN ? (
-              <NumberFormat
-                value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
-                displayType={'text'}
-                thousandSeparator={true}
-                suffix={'$'}
-              />
-            ) : (
-              ''
-            )}
-          </div>
+          {isShowXemThem === true && (
+            <div className="xem-them">
+              <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+            </div>
+          )}
+          {isShowPrice === true && (
+            <div className="price">
+              <span className="price-text">
+                {' '}
+                <FormattedMessage id="patient.booking-model.gia-kham" />{' '}
+              </span>
+              {dataProfile &&
+              dataProfile.Doctor_Infor &&
+              dataProfile.Doctor_Infor.priceTypeData &&
+              language === LANGUAGES.VI ? (
+                <NumberFormat
+                  value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  suffix={'VNĐ'}
+                />
+              ) : (
+                ''
+              )}
+              {dataProfile &&
+              dataProfile.Doctor_Infor &&
+              dataProfile.Doctor_Infor.priceTypeData &&
+              language === LANGUAGES.EN ? (
+                <NumberFormat
+                  value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  suffix={'$'}
+                />
+              ) : (
+                ''
+              )}
+            </div>
+          )}
         </div>
       </>
     );

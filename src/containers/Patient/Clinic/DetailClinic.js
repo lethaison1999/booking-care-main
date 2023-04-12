@@ -5,53 +5,39 @@ import ProfileDoctor from '../Doctor/ProfileDoctor';
 import HomeHeader from '../../HomePage/HomeHeader';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import DoctorExtraInfor from '../Doctor/DoctorExtraInfor';
-import './DetailSpecialty.scss';
-import { getDetailSpecialtyByIdService, getAllCodeService } from '../../../services/userService';
+import './DetailClinic.scss';
+import { getDetailClinicByIdService, getAllCodeService } from '../../../services/userService';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../utils';
 
-class DetailSpecialty extends Component {
+class DetailClinic extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrDoctorId: [],
-      dataDetailSpecialty: {},
-      listProvince: [],
-      isShow: false,
+      dataDetailClinic: {},
     };
   }
 
   async componentDidMount() {
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
-      let response = await getDetailSpecialtyByIdService({
+      let response = await getDetailClinicByIdService({
         id: id,
-        location: 'ALL',
       });
-      let resProvince = await getAllCodeService('PROVINCE');
-      if (response && response.errCode === 0 && resProvince && resProvince.errCode === 0) {
+      if (response && response.errCode === 0) {
         let data = response.data;
         let arrDoctorId = [];
         if (data && !_.isEmpty(response.data)) {
-          let arr = data.doctorSpecialty;
+          let arr = data.doctorClinic;
           if (arr && arr.length > 0) {
             arr.map((item) => arrDoctorId.push(item.doctorId));
           }
         }
-        let dataProvince = resProvince.data;
-        if (dataProvince && dataProvince.length > 0) {
-          dataProvince.unshift({
-            createAt: null,
-            keyMap: 'ALL',
-            type: 'PROVINCE',
-            valueEn: 'ALL',
-            valueVi: 'Toàn quốc',
-          });
-        }
+
         this.setState({
-          dataDetailSpecialty: response.data,
+          dataDetailClinic: response.data,
           arrDoctorId: arrDoctorId,
-          listProvince: dataProvince ? dataProvince : [],
         });
       }
     }
@@ -61,69 +47,27 @@ class DetailSpecialty extends Component {
     if (this.props.language !== prevProps.language) {
     }
   }
-  // '/api/get-detail-specialty-by-id'
-  handleOnchangeSelect = async (e) => {
-    if (this.props.match && this.props.match.params && this.props.match.params.id) {
-      let id = this.props.match.params.id;
-      let location = e.target.value;
-      let response = await getDetailSpecialtyByIdService({
-        id: id,
-        location: location,
-      });
-      if (response && response.errCode === 0) {
-        let data = response.data;
-        let arrDoctorId = [];
-        if (data && !_.isEmpty(response.data)) {
-          let arr = data.doctorSpecialty;
-          if (arr && arr.length > 0) {
-            arr.map((item) => arrDoctorId.push(item.doctorId));
-          }
-        }
 
-        this.setState({
-          dataDetailSpecialty: response.data,
-          arrDoctorId: arrDoctorId,
-        });
-      }
-    }
-  };
-  handleShow = (status) => {
-    this.setState({
-      isShow: status,
-    });
-  };
   render() {
-    let { arrDoctorId, dataDetailSpecialty, listProvince, isShow } = this.state;
+    let { arrDoctorId, dataDetailClinic } = this.state;
     let { language } = this.props;
-    // console.log('check state :', this.state);
 
     return (
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="specialty-body">
           <div className="desc-specialty">
-            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+            {dataDetailClinic && !_.isEmpty(dataDetailClinic) && (
               <>
+                <div className="font-weight-bold mb-2 mt-2">{dataDetailClinic.name}</div>
                 <div
                   className="desc-inner"
-                  dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
+                  dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}
                 ></div>
               </>
             )}
           </div>
-          <div className="search-specialty">
-            <select onChange={(e) => this.handleOnchangeSelect(e)}>
-              {listProvince &&
-                listProvince.length > 0 &&
-                listProvince.map((item, index) => {
-                  return (
-                    <option key={index} value={item.keyMap}>
-                      {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
-                    </option>
-                  );
-                })}
-            </select>
-          </div>
+
           {arrDoctorId &&
             arrDoctorId.length > 0 &&
             arrDoctorId.map((item, index) => {
@@ -169,4 +113,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailClinic);

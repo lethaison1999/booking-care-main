@@ -19,6 +19,7 @@ import DetailDoctor from '../containers/Patient/Doctor/DetailDoctor';
 import Doctor from '../routes/Doctor';
 import VerifyEmail from './Patient/VerifyEmail';
 import DetailSpecialty from './Patient/Specialty/DetailSpecialty';
+import DetailClinic from './Patient/Clinic/DetailClinic';
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -53,6 +54,7 @@ class App extends Component {
                   <Route path={path.HOMEPAGE} exact component={HomePage} />
                   <Route path={path.DETAIL_DOCTOR} exact component={DetailDoctor} />
                   <Route path={path.DETAIL_SPECIALTY} exact component={DetailSpecialty} />
+                  <Route path={path.DETAIL_CLINIC} exact component={DetailClinic} />
 
                   <Route path={path.VERIFY_EMAIL_BOOKING} exact component={VerifyEmail} />
                 </Switch>
@@ -70,16 +72,6 @@ class App extends Component {
               draggable
               pauseOnHover
               theme="light"
-              // className="toast-container"
-              // toastClassName="toast-item"
-              // bodyClassName="toast-item-body"
-              // autoClose={false}
-              // hideProgressBar={true}
-              // pauseOnHover={false}
-              // pauseOnFocusLoss={true}
-              // closeOnClick={false}
-              // draggable={false}
-              // closeButton={<CustomToastCloseButton />}
             />
           </div>
         </Router>

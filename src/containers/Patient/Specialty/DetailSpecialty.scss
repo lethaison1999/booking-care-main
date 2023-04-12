@@ -1,29 +1,46 @@
 .detail-specialty-container {
+  background-color: #eeeeee;
+
   // width: 100%;
   .desc-specialty {
-    height: 200px;
-    // border: 1px solid red;
-    background-color: #eeeeee;
+    padding: 0 180px;
+    padding-top: 20px;
+    .desc-inner {
+      background-color: #fff;
+      padding: 5px 10px;
+      // box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+      border-radius: 3px;
+    }
+  }
+  .search-specialty {
+    padding: 0 180px;
+    margin-top: 8px;
+    select {
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      // transform: all 0.5s linear;
+    }
   }
   .row.specialty-app {
     padding-top: 50px;
     padding: 0 100px;
-    background-color: #eeeeee !important;
+    // background-color: #eeeeee !important;
     .each-doctor {
       background-color: #fff;
       box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
       border-radius: 8px;
       border-bottom: none;
-      margin-bottom: 10px !important;
+      // margin-bottom: 10px !important;
       margin-top: 10px !important;
       display: flex;
       width: 100%;
       min-height: 300px;
       margin: 0 100px;
-      // background-color: #eeeeee;
       .content-left {
         width: 50%;
-        // background-color: #ffffff;
       }
       .content-right {
         width: 50%;
@@ -38,5 +55,38 @@
         // background-color: #ffffff;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .detail-specialty-container .desc-specialty {
+    padding: 0;
+  }
+  .detail-specialty-container .search-specialty {
+    padding: 0;
+  }
+  .detail-specialty-container .row.specialty-app {
+    padding: 0;
+  }
+  .detail-specialty-container .row.specialty-app .each-doctor {
+    margin: 0 50px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .detail-specialty-container .row.specialty-app .each-doctor {
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-specialty-container .row.specialty-app .each-doctor .content-left {
+    width: 100%;
+  }
+  .detail-specialty-container .row.specialty-app .each-doctor .content-right {
+    width: 100%;
+  }
+  .col-6 {
+    flex: 0 0 0;
+    max-width: 100%;
   }
 }

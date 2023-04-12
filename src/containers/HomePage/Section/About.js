@@ -5,11 +5,11 @@ class About extends Component {
   render() {
     return (
       <>
-        <div className="section-share section-about">
-          <div className="section-about-header">
+        <div className="section-share section-about ">
+          <div className="section-about-header ">
             <h2> Câu nói ý nghĩa thay đổi cuộc sống của bạn MÃI MÃI</h2>
           </div>
-          <div className="section-about-content">
+          <div className="section-about-content ">
             <div className="content-left">
               <iframe
                 width="100%"
@@ -23,9 +23,8 @@ class About extends Component {
             </div>
             <div className="content-right">
               <p>
-                Đừng bao giờ nói bạn đã thất bại cho đến khi đó là nỗ lực cuối
-                cùng của bạn. Và đừng bao giờ nói rằng đó là nỗ lực cuối cùng
-                của bạn cho đến khi bạn đã thành công.
+                Đừng bao giờ nói bạn đã thất bại cho đến khi đó là nỗ lực cuối cùng của bạn. Và đừng
+                bao giờ nói rằng đó là nỗ lực cuối cùng của bạn cho đến khi bạn đã thành công.
               </p>
             </div>
           </div>

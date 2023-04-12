@@ -127,8 +127,8 @@ class ManageSchedule extends Component {
     } else {
       toast.error('Save Schedule Faild ...');
     }
-    console.log('handle save schedule', result);
-    console.log('handle save res', res);
+    // console.log('handle save schedule', result);
+    // console.log('handle save res', res);
   };
   render() {
     let { rangeTime } = this.state;
@@ -185,10 +185,7 @@ class ManageSchedule extends Component {
                 })}
             </div>
 
-            <button
-              className=" btn btn-primary"
-              onClick={() => this.handleSaveSchedule()}
-            >
+            <button className=" btn btn-primary" onClick={() => this.handleSaveSchedule()}>
               <FormattedMessage id="manage-schedule.save-doctor" />
             </button>
           </div>
@@ -210,8 +207,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllDoctorRedux: () => dispatch(actions.getAllDoctor()),
-    getAllCodeScheduleHourRedux: () =>
-      dispatch(actions.getAllCodeScheduleHour()),
+    getAllCodeScheduleHourRedux: () => dispatch(actions.getAllCodeScheduleHour()),
   };
 };
 

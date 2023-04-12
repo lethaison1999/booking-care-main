@@ -17,7 +17,7 @@
   font-size: 24px !important;
 }
 .slick-next {
-  right: 5px !important;
+  right: -3px !important;
   height: 45px !important;
   z-index: 999;
   width: 40px !important;
@@ -51,18 +51,20 @@
         transition: all 0.15s linear;
       }
       .bg-image {
-        width: 278px;
+        // width: 278px;
         height: 150px;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-        background-color: #eee;
+        // background-color: #eee;
 
         &.section-specialty {
           // background-image: url(../../assets/specialty/co-xuong-khop.jpg);
         }
         &.section-medical-facility {
-          background-image: url(../../assets/medical-facility/viet-duc.jpg);
+          // background-image: url(../../assets/medical-facility/viet-duc.jpg);
+          background-size: contain !important;
+          border: 1px solid #eee !important;
         }
         &.section-outstanding-doctor {
           // background-image: url(../../assets/outstanding-doctor/anh-dai-dien-bs.jpg);
@@ -169,5 +171,89 @@
         padding-top: 15px;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .section-about .section-about-content .content-left {
+    width: 100%;
+  }
+  .section-about .section-about-content .content-right {
+  }
+  .section-about .section-about-header h2 {
+    text-align: center;
+  }
+  .section-about .section-about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-about {
+    margin: 0;
+  }
+  .section-customize .customize-border {
+    border: none;
+    padding: 0;
+  }
+  .section-share {
+    .section-body {
+      .section-customize {
+        margin: 5px;
+        .bg-image {
+          // width: 173px;
+          height: 98px;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .section-share {
+    .section-container {
+      margin: 0;
+      .section-header {
+        h2.section-title {
+          font-size: 15px;
+          font-weight: bold;
+          padding: 15px 0px 5px 0px;
+        }
+        .section-btn {
+          text-transform: uppercase;
+          display: inline-block;
+          font-size: 11px;
+        }
+      }
+    }
+    .section-body {
+      .section-customize {
+        margin: 5px;
+        .bg-image {
+          // width: 133px;
+          // height: 80px;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 576px) {
+  .section-share .section-body .section-customize .bg-image.section-outstanding-doctor {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  button.slick-arrow.slick-next {
+    display: none !important;
+  }
+  button.slick-arrow.slick-prev {
+    display: none !important;
   }
 }
