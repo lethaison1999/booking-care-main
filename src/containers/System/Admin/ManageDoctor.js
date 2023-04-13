@@ -73,7 +73,8 @@ class ManageDoctor extends Component {
       });
     }
     if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor) {
-      let { resPayment, resPrice, resProvince, resSpecialty, resClinic } = this.props.allRequiredDoctorInfor;
+      let { resPayment, resPrice, resProvince, resSpecialty, resClinic } =
+        this.props.allRequiredDoctorInfor;
       let dataSelectPrice = this.handleSelectInPutDoctor(resPrice, 'PRICE');
       let dataSelectPayment = this.handleSelectInPutDoctor(resPayment, 'PAYMENT');
       let dataSelectProvince = this.handleSelectInPutDoctor(resProvince, 'PROVINCE');
@@ -111,7 +112,10 @@ class ManageDoctor extends Component {
       nameClinic: this.state.nameClinic,
       addressClinic: this.state.addressClinic,
       note: this.state.note,
-      clinicId: this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : '',
+      clinicId:
+        this.state.selectedClinic && this.state.selectedClinic.value
+          ? this.state.selectedClinic.value
+          : '',
       specialtyId: this.state.selectedSpecialty.value,
     });
   };
@@ -338,17 +342,16 @@ class ManageDoctor extends Component {
                 name="selectedProvince"
               />
             </div>
-            {/* <div className="col-4 form-group">
+            <div className="col-4 form-group">
               <label htmlFor="">
-                <FormattedMessage id="admin.manage-doctor.chuyen-khoa" />
+                <FormattedMessage id="admin.manage-doctor.clinic" />
               </label>
-
               <input
                 className="form-control"
                 onChange={(e) => this.handleChangText(e, 'nameClinic')}
                 value={this.state.nameClinic}
               />
-            </div> */}
+            </div>
             <div className="col-4 form-group">
               <label htmlFor="">
                 <FormattedMessage id="admin.manage-doctor.clinic-address" />
@@ -407,7 +410,9 @@ class ManageDoctor extends Component {
         </div>
 
         <button
-          className={hasOldData === true ? 'btn btn-warning save-doctor' : 'btn btn-primary create-doctor'}
+          className={
+            hasOldData === true ? 'btn btn-warning save-doctor' : 'btn btn-primary create-doctor'
+          }
           onClick={() => this.handleSaveContentMarkDown()}
         >
           {hasOldData === true ? (

@@ -5,6 +5,8 @@ import Slider from 'react-slick';
 import * as actions from '../../../store/actions/';
 import { LANGUAGES } from '../../../utils/constant';
 import { withRouter } from 'react-router';
+import { toast } from 'react-toastify';
+
 class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +26,10 @@ class OutStandingDoctor extends Component {
   }
 
   handleViewDetailDoctor = (doctor) => {
-    // console.log('check doctor ', doctor);
     this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
+  handleSectionBtn = () => {
+    toast.warn('Chức năng này đang được phát triển ...');
   };
   render() {
     let arrDoctors = this.state.arrDoctors;
@@ -38,7 +42,7 @@ class OutStandingDoctor extends Component {
               <h2 className="section-title">
                 <FormattedMessage id="homePage.outstanding-doctor" />
               </h2>
-              <button className="section-btn">
+              <button className="section-btn" onClick={() => this.handleSectionBtn()}>
                 {' '}
                 <FormattedMessage id="homePage.more-infor" />
               </button>
@@ -55,7 +59,11 @@ class OutStandingDoctor extends Component {
                     let nameVi = `${item.positionData.valueVi},${item.firstName} ${item.lastName}`;
                     let nameEn = `${item.positionData.valueEn},${item.lastName} ${item.firstName} `;
                     return (
-                      <div className="section-customize" key={index} onClick={() => this.handleViewDetailDoctor(item)}>
+                      <div
+                        className="section-customize"
+                        key={index}
+                        onClick={() => this.handleViewDetailDoctor(item)}
+                      >
                         <div className="customize-border">
                           <div className="outer-bg">
                             <div
@@ -64,7 +72,9 @@ class OutStandingDoctor extends Component {
                             />
                           </div>
                           <div className="position text-center">
-                            <div className="section-text">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                            <div className="section-text">
+                              {language === LANGUAGES.VI ? nameVi : nameEn}
+                            </div>
                             <div style={{ color: '#55555', fontSize: '12px' }}>Cơ Xương Khớp</div>
                           </div>
                         </div>

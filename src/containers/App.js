@@ -6,7 +6,7 @@ import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
 import CustomScrollbars from '../components/CustomScrollbars';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
-
+import './App.scss';
 import { path } from '../utils';
 
 import Home from '../routes/Home';

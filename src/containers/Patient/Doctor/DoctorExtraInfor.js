@@ -37,18 +37,15 @@ class DoctorExtraInfor extends Component {
           extraInfor: res.data,
         });
       }
-      // console.log('check data', res);
     }
   }
   handleShowDetailInfor = (status) => {
     this.setState({
       isShowDetailInfor: status,
     });
-    // console.log('status', status);
   };
   render() {
     let { isShowDetailInfor, extraInfor } = this.state;
-    // console.log('extraInfor: ', extraInfor);
     let { language } = this.props;
     return (
       <>
@@ -60,7 +57,9 @@ class DoctorExtraInfor extends Component {
                   <div className="text-address">
                     <FormattedMessage id="patient.extra-doctorInfo.text-address" />
                   </div>
-                  <div className="name-clinic">{extraInfor && extraInfor.nameClinic ? extraInfor.nameClinic : ''}</div>
+                  <div className="name-clinic">
+                    {extraInfor && extraInfor.nameClinic ? extraInfor.nameClinic : ''}
+                  </div>
                   <div className="detail-address">
                     {extraInfor && extraInfor.addressClinic ? extraInfor.addressClinic : ''}
                   </div>
@@ -131,7 +130,9 @@ class DoctorExtraInfor extends Component {
                             />
                           )}
                         </span>
-                        <p className="text-p">{extraInfor && extraInfor.note ? extraInfor.note : ''}</p>
+                        <p className="text-p">
+                          {extraInfor && extraInfor.note ? extraInfor.note : ''}
+                        </p>
                       </div>
                       <div className="content-payment">
                         <FormattedMessage id="patient.extra-doctorInfo.content-payment" />
@@ -144,7 +145,10 @@ class DoctorExtraInfor extends Component {
                           : ''}
                       </div>
                       <div className="none-price">
-                        <span className="show an-bang-gia" onClick={() => this.handleShowDetailInfor(false)}>
+                        <span
+                          className="show an-bang-gia"
+                          onClick={() => this.handleShowDetailInfor(false)}
+                        >
                           <FormattedMessage id="patient.extra-doctorInfo.an-bang-gia" />
                         </span>
                       </div>

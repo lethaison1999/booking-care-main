@@ -5,6 +5,8 @@ import { getAllSpecialtyService } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 import './Specialty.scss';
+import { toast } from 'react-toastify';
+
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +23,13 @@ class Specialty extends Component {
     }
   }
   handleViewDetailDoctor = (item) => {
-    // console.log('check item ', item);
     this.props.history.push(`/detail-specialty/${item.id}`);
+  };
+  handleSectionBtn = () => {
+    toast.warn('Chức năng này đang được phát triển ...');
   };
   render() {
     let { dataSpecialty } = this.state;
-    // console.log('check state :', dataSpecialty);
     return (
       <>
         <div className="section-share section-specialty ">
@@ -35,7 +38,7 @@ class Specialty extends Component {
               <h2 className="section-title">
                 <FormattedMessage id="homePage.specialty-title" />
               </h2>
-              <button className="section-btn">
+              <button className="section-btn" onClick={() => this.handleSectionBtn()}>
                 <FormattedMessage id="homePage.more-infor" />
               </button>
             </div>

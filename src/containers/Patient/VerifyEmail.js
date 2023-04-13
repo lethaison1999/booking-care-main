@@ -34,12 +34,7 @@ class VerifyEmail extends Component {
         });
       }
     }
-    // console.log('thai son dev :', this.props);
-    if (
-      this.props.match &&
-      this.props.match.params &&
-      this.props.match.params.id
-    ) {
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
     }
   }
 
@@ -50,7 +45,6 @@ class VerifyEmail extends Component {
 
   render() {
     let { statusVerify, errCode } = this.state;
-    console.log('check : ', this.state);
     return (
       <>
         <HomeHeader />

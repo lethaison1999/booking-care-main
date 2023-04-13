@@ -100,7 +100,6 @@ class DoctorSchedule extends Component {
       isOpenModalBooking: true,
       dataScheduleTimeModal: time,
     });
-    // console.log('check time', time);
   };
   closeBookingModal = () => {
     this.setState({
@@ -146,7 +145,9 @@ class DoctorSchedule extends Component {
                     <>
                       {allAvalableTime.map((item, index) => {
                         let timeDisplay =
-                          language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
+                          language === LANGUAGES.VI
+                            ? item.timeTypeData.valueVi
+                            : item.timeTypeData.valueEn;
                         return (
                           <button
                             key={index}

@@ -91,3 +91,15 @@
     height: 90px;
   }
 }
+
+@media only screen and (max-width: 576px) {
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .booking-modal__container .booking-modal__content .booking-modal__footer {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+  }
+}

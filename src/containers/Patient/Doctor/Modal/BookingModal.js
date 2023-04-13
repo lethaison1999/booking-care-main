@@ -175,12 +175,13 @@ class BookingModal extends Component {
         doctorName: doctorName,
       });
       if (res && res.errCode === 0) {
-        toast.success('Tạo lịch khám bệnh thành công ...');
+        toast.success(
+          'Tạo lịch khám bệnh thành công, vui lòng kiểm tra email để xác nhận thông tin đặt lịch'
+        );
         this.props.closeBookingModal();
       } else {
         toast.error('Tạo lịch khám bệnh thất bại ...');
       }
-      // console.log('check :', this.state);
     }
   };
   render() {

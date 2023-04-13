@@ -61,7 +61,6 @@ class ModalUserEdit extends Component {
     }
   };
   render() {
-    // console.log('check props', this.props);
     return (
       <Modal
         isOpen={this.props.isOpen}
@@ -117,18 +116,10 @@ class ModalUserEdit extends Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button
-            color="primary"
-            className="px-3"
-            onClick={() => this.handleSaveUser()}
-          >
+          <Button color="primary" className="px-3" onClick={() => this.handleSaveUser()}>
             Save Change
           </Button>{' '}
-          <Button
-            color="secondary"
-            className="px-3"
-            onClick={() => this.toggle()}
-          >
+          <Button color="secondary" className="px-3" onClick={() => this.toggle()}>
             Close
           </Button>
         </ModalFooter>

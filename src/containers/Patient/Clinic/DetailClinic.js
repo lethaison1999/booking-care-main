@@ -9,6 +9,7 @@ import './DetailClinic.scss';
 import { getDetailClinicByIdService, getAllCodeService } from '../../../services/userService';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../utils';
+import HomeFooter from '../../HomePage/HomeFooter';
 
 class DetailClinic extends Component {
   constructor(props) {
@@ -98,6 +99,7 @@ class DetailClinic extends Component {
               );
             })}
         </div>
+        <HomeFooter />
       </div>
     );
   }

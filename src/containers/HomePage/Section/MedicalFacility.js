@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import { getAllClinicService } from '../../../services/userService';
 import { withRouter } from 'react-router';
-
+import { toast } from 'react-toastify';
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
@@ -16,22 +16,24 @@ class MedicalFacility extends Component {
     if (res && res.errCode === 0) {
       this.setState({ dataClinics: res.data });
     }
-    // console.log('check res clinics :', res);
   }
   handleViewDetailClinic = (item) => {
-    // console.log('check : ' + item);
     this.props.history.push(`/detail-clinic/${item.id}`);
+  };
+  handleSectionBtn = () => {
+    toast.warn('Chức năng này đang được phát triển ...');
   };
   render() {
     let { dataClinics } = this.state;
-    // console.log('check data clinic :', this.state);
     return (
       <>
         <div className="section-share section-medical-facility">
           <div className="section-container">
             <div className="section-header">
               <h2 className="section-title">Cơ sở y tế nổi bật</h2>
-              <button className="section-btn">TÌM KIẾM</button>
+              <button className="section-btn" onClick={() => this.handleSectionBtn()}>
+                TÌM KIẾM
+              </button>
             </div>
             <div className="section-body">
               <Slider {...this.props.settings}>
@@ -39,7 +41,11 @@ class MedicalFacility extends Component {
                   dataClinics.length > 0 &&
                   dataClinics.map((item, index) => {
                     return (
-                      <div className="section-customize" key={index} onClick={() => this.handleViewDetailClinic(item)}>
+                      <div
+                        className="section-customize"
+                        key={index}
+                        onClick={() => this.handleViewDetailClinic(item)}
+                      >
                         <div
                           className="bg-image section-medical-facility"
                           style={{ backgroundImage: `url(${item.image})` }}

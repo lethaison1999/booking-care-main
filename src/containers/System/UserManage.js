@@ -74,7 +74,6 @@ class UserManage extends Component {
   */
   handleDeleteUser = async (item) => {
     try {
-      console.log('check item: ', item);
       let response = await deleteUserService(item.id);
       if (response && response.errCode === 0) {
         await this.getAllUsersReact();
@@ -125,10 +124,7 @@ class UserManage extends Component {
         )}
         <div className="title text-center">Manage users with thaisondev</div>
         <div className="mx-1 ">
-          <button
-            className="btn btn-primary px-3 mx-2"
-            onClick={() => this.handleCreateUser()}
-          >
+          <button className="btn btn-primary px-3 mx-2" onClick={() => this.handleCreateUser()}>
             <i className="fas fa-plus"></i> Add new User
           </button>
         </div>
@@ -154,16 +150,10 @@ class UserManage extends Component {
                       <td>{item.lastName}</td>
                       <td>{item.address}</td>
                       <td>
-                        <button
-                          className="btn-edit"
-                          onClick={() => this.handleUserEdit(item)}
-                        >
+                        <button className="btn-edit" onClick={() => this.handleUserEdit(item)}>
                           <i className="fas fa-pencil-alt"></i>
                         </button>
-                        <button
-                          className="btn-delete"
-                          onClick={() => this.handleDeleteUser(item)}
-                        >
+                        <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
                           <i className="fas fa-trash-alt"></i>
                         </button>
                       </td>

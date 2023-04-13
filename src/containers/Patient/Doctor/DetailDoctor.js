@@ -7,6 +7,7 @@ import DoctorExtraInfor from './DoctorExtraInfor';
 import { getDeitailInforDoctors } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import { Link } from 'react-router-dom';
+import HomeFooter from '../../HomePage/HomeFooter';
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,6 @@ class DetailDoctor extends Component {
   componentDidUpdate(prevProps, prevState) {}
 
   render() {
-    // console.log('check state thai son dev', this.state);
     let { language } = this.props;
     let { detailDoctor } = this.state;
     let nameVi = '';
@@ -82,6 +82,7 @@ class DetailDoctor extends Component {
           </div>
           <div className="comment-doctor"></div>
         </div>
+        {/* <HomeFooter /> */}
       </>
     );
   }

@@ -48,7 +48,7 @@ class Login extends Component {
         }
       }
 
-      console.log('thaisondev', error.response);
+      // console.log('thaisondev', error.response);
     }
   };
   handleShowHidePassword = () => {
@@ -90,13 +90,7 @@ class Login extends Component {
                 />
 
                 <span onClick={() => this.handleShowHidePassword()}>
-                  <i
-                    className={
-                      this.state.isShowPassword
-                        ? 'far fa-eye'
-                        : 'fas fa-eye-slash'
-                    }
-                  ></i>
+                  <i className={this.state.isShowPassword ? 'far fa-eye' : 'fas fa-eye-slash'}></i>
                 </span>
               </div>
             </div>
@@ -136,8 +130,7 @@ const mapDispatchToProps = (dispatch) => {
     navigate: (path) => dispatch(push(path)),
 
     // userLoginFail: () => dispatch(actions.adminLoginFail()),
-    userLoginSuccess: (userInfo) =>
-      dispatch(actions.userLoginSuccess(userInfo)),
+    userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
